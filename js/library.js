@@ -3,10 +3,11 @@ function Player (title, author, pages, read) {
   this.author = author
   this.pages = pages
   this.read = read
-  this.info = function() {
-    return `${this.title} by ${this.author}, ${pages} pages, ${read}`
-  }
 }
+
+Player.prototype.info = function() {
+    return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`
+  }
 
 const animalFarm = new Player('Animal Farm', 'George Orwell', '141', true)
 
