@@ -1,0 +1,51 @@
+body {
+  font-size: 16px;
+}
+
+h3 {
+  font-size: 2.369rem;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 1.777rem;
+}
+
+#library {
+  background-color: #f1f1f1;
+}
+
+.card {
+  display: flex;
+  padding: 20px 10px;
+  border: 2px solid #212121;
+  max-width: 500px;
+}
+
+.book {
+  width: 191px;
+  height: 287px;
+  background-color: #212121;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 0 0 0 40px;
+}
+
+.details header {
+  margin-bottom: 10px;
+}
+
+.author {
+  color: #00000099;
+}
+
+.read {
+  width: 191px;
+  padding: 7.5px 15px;
+  text-align: center;
+  border: 1px solid #212121;
+}
