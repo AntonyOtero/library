@@ -34,24 +34,31 @@ function Book(title, author, pages, read) {
   this.pages = pages
   this.read = read
 }
+
 const createCard = (i) => {
   let card = document.createElement('div')
-  card.classList.add('card')
+  let readStatus = myLibrary[i].read
+
   card.innerHTML = `
-    <div class="book"></div>
-    <div class="info">
-      <div class="details">
-        <header>  
-          <h3 class="title">${myLibrary[i].title}</h3>
-          <h4 class="author">${myLibrary[i].author}</h4>
-        </header>
-        <p class="pages">${myLibrary[i].pages} pages</p>
-      </div>
-      <div class="read">${
-        (myLibrary[i].read) ? "Finished" : "Not Finished"
-      }</div>
-    </div>`
+  <div class="book"></div>
+  <div class="info">
+  <div class="details">
+  <header>  
+  <h3 class="title">${myLibrary[i].title}</h3>
+  <h4 class="author">${myLibrary[i].author}</h4>
+  </header>
+  <p class="pages">${myLibrary[i].pages} pages</p>
+  </div>
+  <div class="read">${
+    (readStatus) ? "Finished" : "Not Finished"
+  }</div>
+  </div>`
   
+  if (readStatus) {
+    card.classList.add('finished')
+  }
+  card.classList.add('card')
+
   return card
 }
 
