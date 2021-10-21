@@ -50,7 +50,7 @@ const addBookToLibrary = (book) => {
   collection.push(book)
 }
 
-const displayLibrary = () => {
+const updateLibrary = () => {
   let library = document.createElement('div')
   library.id = 'library'
   
@@ -66,8 +66,8 @@ const displayLibrary = () => {
   removeButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       collection.splice(btn.dataset.id, 1)
-      removeLibrary()
-      displayLibrary()
+      deleteLibrary()
+      updateLibrary()
       console.log(collection)
     })
   })
@@ -77,13 +77,13 @@ const displayLibrary = () => {
       console.log(collection[i])
       collection[i].toggleRead()
       console.log(collection[i])
-      removeLibrary()
-      displayLibrary()
+      deleteLibrary()
+      updateLibrary()
     })
   })
 }
 
-const removeLibrary = () => {
+const deleteLibrary = () => {
   document.querySelector('#library').remove()
 }
 
@@ -95,13 +95,13 @@ Book.prototype.toggleRead = function () {
   return this.read = !this.read
 }
 
-displayLibrary()
+updateLibrary()
 
 FORM_BTN.addEventListener('click', () => {
   let formData = new FormData(FORM_ELEM)
   let bookInfo = formData.getAll('bookInfo')
   
   addBookToLibrary(new Book(...bookInfo))
-  removeLibrary()
-  displayLibrary()
+  deleteLibrary()
+  updateLibrary()
 })
