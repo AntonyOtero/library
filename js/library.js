@@ -1,6 +1,7 @@
 const MAIN = document.querySelector('main')
 const FORM_ELEM = document.querySelector('#form-new-book')
 const FORM_BTN = FORM_ELEM.querySelector('button')
+let removeButtons = new Array
 
 let collection = [
   {
@@ -41,7 +42,7 @@ const createCard = (i) => {
   let readStatus = collection[i].read
 
   card.innerHTML = `
-  <div class="book"></div>
+  <div class="photo"></div>
   <div class="info">
   <div class="details">
   <header>  
@@ -53,6 +54,9 @@ const createCard = (i) => {
   <div class="read">${
     (readStatus) ? "Finished" : "Not Finished"
   }</div>
+  </div>
+  <div class="remove" data-id=${i}>
+  <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle-minus" class="svg-inline--fa fa-circle-minus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256C397.4 512 512 397.4 512 256S397.4 0 256 0zM352 280h-192C146.8 280 136 269.2 136 256c0-13.2 10.8-24 24-24h192C365.2 232 376 242.8 376 256C376 269.2 365.2 280 352 280z"></path></svg>
   </div>`
   
   if (readStatus) {
@@ -74,6 +78,15 @@ const displayLibrary = () => {
   for (let i = 0; i < collection.length; i++){
     library.appendChild(createCard(i))
   }
+  removeButtons = document.querySelectorAll('.remove')
+  removeButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      collection.splice(btn.dataset.id, 1)
+      removeLibrary()
+      displayLibrary()
+      console.log(collection)
+    })
+  })
 }
 
 const removeLibrary = () => {
@@ -83,12 +96,8 @@ const removeLibrary = () => {
 Book.prototype.info = function() {
     return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`
 }
-  
-// Instantiate
 
 displayLibrary()
-
-// Event Listeners
 
 FORM_BTN.addEventListener('click', () => {
   let formData = new FormData(FORM_ELEM)
