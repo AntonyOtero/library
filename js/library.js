@@ -1,5 +1,7 @@
 const LIBRARY = document.querySelector('#library')
-
+const FORM_ELEM = document.querySelector('#form-new-book')
+const FORM_BTN = FORM_ELEM.querySelector('button')
+let formData
 
 let myLibrary = [
   {
@@ -66,6 +68,7 @@ const addBookToLibrary = (book) => {
   myLibrary.push(book)
 }
 
+// TODO Delete all elements inside #library before displaying books
 const displayLibrary = () => {
   for (let i = 0; i < myLibrary.length; i++){
     LIBRARY.appendChild(createCard(i))
@@ -80,3 +83,13 @@ const animalFarm = new Book('Animal Farm', 'George Orwell', '141', true)
 
 
 displayLibrary()
+
+// Event Listeners
+
+FORM_BTN.addEventListener('click', () => {
+  formData = new FormData(FORM_ELEM)
+  let bookInfo = formData.getAll('bookInfo')
+  
+  addBookToLibrary(new Book(...bookInfo))
+  displayLibrary()
+})

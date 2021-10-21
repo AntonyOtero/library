@@ -18,29 +18,29 @@
 
         <label for="title">
           Title:
-          <input type="text" name="newBook" id="title" required>
+          <input type="text" name="bookInfo" id="title" required>
         </label>
 
         <label for="author">
           Author:
-          <input type="text" name="newBook" id="author">
+          <input type="text" name="bookInfo" id="author">
         </label>
 
         <label for="pages">
           Pages:
-          <input type="text" name="newBook" id="pages">
+          <input type="text" name="bookInfo" id="pages">
         </label>
 
         <label for="read">
           Read:
-          <input type="radio" name="newBook" id="read" value="yes">
+          <input type="radio" name="bookInfo" id="read-yes" value="yes">
           <label for="read">Yes</label>
   
-          <input type="radio" name="newBook" id="read" value="no">
+          <input type="radio" name="bookInfo" id="read-no" value="no">
           <label for="read">No</label>
         </label>
 
-        <button type="button">Done</button>
+        <button type="button" form="form-new-book">Done</button>
       </fieldset>
     </form>
     <!-- Books appended via libary.js -->
