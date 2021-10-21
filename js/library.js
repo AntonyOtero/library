@@ -1,33 +1,12 @@
 const MAIN = document.querySelector('main')
 const FORM_ELEM = document.querySelector('#form-new-book')
 const FORM_BTN = FORM_ELEM.querySelector('button')
-let removeButtons = new Array
 
 let collection = [
-  {
-    title: 'Animal Farm',
-    author: 'George Orwell',
-    pages: '141',
-    read: true
-  },
-  {
-    title: 'A Court of Thorns and Roses',
-    author: 'Sarah J. Maas',
-    pages: '419',
-    read: true
-  },
-  {
-    title: 'A Court of Mist and Fury',
-    author: 'Sarah J. Maas',
-    pages: '626',
-    read: false
-  },
-  {
-    title: 'Milk and Honey',
-    author: 'Rupi Kaur',
-    pages: '204',
-    read: true
-  }
+  new Book('Animal Farm', 'George Orwell', '141', true),
+  new Book('A Court of Thorns and Roses', 'Sara J. Maas', '419', true),
+  new Book('A Court of Mist and Fury', 'Sara J. Maas', '626', false),
+  new Book('Milk and Honey', 'Rupi Kaur', '204', true)
 ]
 
 function Book(title, author, pages, read) {
@@ -74,17 +53,32 @@ const addBookToLibrary = (book) => {
 const displayLibrary = () => {
   let library = document.createElement('div')
   library.id = 'library'
+  
   MAIN.appendChild(library)
   for (let i = 0; i < collection.length; i++){
     library.appendChild(createCard(i))
   }
-  removeButtons = document.querySelectorAll('.remove')
-  removeButtons.forEach((btn) => {
+
+  let removeButtons = document.querySelectorAll('.remove')
+  let readButtons = document.querySelectorAll('.read')
+
+
+  removeButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       collection.splice(btn.dataset.id, 1)
       removeLibrary()
       displayLibrary()
       console.log(collection)
+    })
+  })
+
+  readButtons.forEach((btn, i) => {
+    btn.addEventListener('click', () => {
+      console.log(collection[i])
+      collection[i].toggleRead()
+      console.log(collection[i])
+      removeLibrary()
+      displayLibrary()
     })
   })
 }
@@ -95,6 +89,10 @@ const removeLibrary = () => {
 
 Book.prototype.info = function() {
     return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`
+}
+
+Book.prototype.toggleRead = function () {
+  return this.read = !this.read
 }
 
 displayLibrary()
