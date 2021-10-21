@@ -5,12 +5,46 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Library</title>
-  <link rel="stylesheet" href="css/reset.css">
+  <!-- <link rel="stylesheet" href="css/reset.css"> -->
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-  <main id="library"></main>
+  <main>
+    <button type="button" id="new-book">New Book</button>
+
+    <form action="" method="" classs="visible" id="form-new-book">
+      <fieldset>
+        <legend>Add a new book</legend>
+    
+        <label for="title">
+          Title:
+          <input type="text" name="bookInfo" id="title" required>
+        </label>
+    
+        <label for="author">
+          Author:
+          <input type="text" name="bookInfo" id="author">
+        </label>
+    
+        <label for="pages">
+          Pages:
+          <input type="text" name="bookInfo" id="pages">
+        </label>
+    
+        <label for="read">
+          Read:
+          <input type="radio" name="bookInfo" id="read-yes" value="yes">
+          <label for="read">Yes</label>
+    
+          <input type="radio" name="bookInfo" id="read-no" value="no">
+          <label for="read">No</label>
+        </label>
+    
+        <button type="button" form="form-new-book">Done</button>
+      </fieldset>
+    </form>
+  </main>
 
   <script src="js/library.js"></script>
 </body>
