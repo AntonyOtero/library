@@ -1,9 +1,8 @@
-const LIBRARY = document.querySelector('#library')
+const MAIN = document.querySelector('main')
 const FORM_ELEM = document.querySelector('#form-new-book')
 const FORM_BTN = FORM_ELEM.querySelector('button')
-let formData
 
-let myLibrary = [
+let collection = [
   {
     title: 'Animal Farm',
     author: 'George Orwell',
@@ -39,17 +38,17 @@ function Book(title, author, pages, read) {
 
 const createCard = (i) => {
   let card = document.createElement('div')
-  let readStatus = myLibrary[i].read
+  let readStatus = collection[i].read
 
   card.innerHTML = `
   <div class="book"></div>
   <div class="info">
   <div class="details">
   <header>  
-  <h3 class="title">${myLibrary[i].title}</h3>
-  <h4 class="author">${myLibrary[i].author}</h4>
+  <h3 class="title">${collection[i].title}</h3>
+  <h4 class="author">${collection[i].author}</h4>
   </header>
-  <p class="pages">${myLibrary[i].pages} pages</p>
+  <p class="pages">${collection[i].pages} pages</p>
   </div>
   <div class="read">${
     (readStatus) ? "Finished" : "Not Finished"
@@ -65,31 +64,37 @@ const createCard = (i) => {
 }
 
 const addBookToLibrary = (book) => {
-  myLibrary.push(book)
+  collection.push(book)
 }
 
-// TODO Delete all elements inside #library before displaying books
 const displayLibrary = () => {
-  for (let i = 0; i < myLibrary.length; i++){
-    LIBRARY.appendChild(createCard(i))
+  let library = document.createElement('div')
+  library.id = 'library'
+  MAIN.appendChild(library)
+  for (let i = 0; i < collection.length; i++){
+    library.appendChild(createCard(i))
   }
+}
+
+const removeLibrary = () => {
+  document.querySelector('#library').remove()
 }
 
 Book.prototype.info = function() {
     return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`
-  }
-
-const animalFarm = new Book('Animal Farm', 'George Orwell', '141', true)
-
+}
+  
+// Instantiate
 
 displayLibrary()
 
 // Event Listeners
 
 FORM_BTN.addEventListener('click', () => {
-  formData = new FormData(FORM_ELEM)
+  let formData = new FormData(FORM_ELEM)
   let bookInfo = formData.getAll('bookInfo')
   
   addBookToLibrary(new Book(...bookInfo))
+  removeLibrary()
   displayLibrary()
 })
