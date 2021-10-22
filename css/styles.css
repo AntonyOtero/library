@@ -2,12 +2,20 @@ body {
   padding: 40px;
 }
 
+.form-new-book {
+  display: none;
+}
+
 .card {
   margin-bottom: 40px;
 }
 
 .remove {
   width: 45px;
+}
+
+.opened {
+  display: block;
 }
 
 /* body {

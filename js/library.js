@@ -1,6 +1,7 @@
 const MAIN = document.querySelector('main')
-const FORM_ELEM = document.querySelector('#form-new-book')
+const FORM_ELEM = document.querySelector('.form-new-book')
 const FORM_BTN = FORM_ELEM.querySelector('button')
+const NEW_BOOK_BTN = document.querySelector('#new-book')
 
 let collection = [
   new Book('Animal Farm', 'George Orwell', '141', true),
@@ -96,6 +97,12 @@ Book.prototype.toggleRead = function () {
 }
 
 updateLibrary()
+
+NEW_BOOK_BTN.addEventListener('click', () => {
+  FORM_ELEM.classList.toggle('opened')
+  let content = (FORM_ELEM.classList.contains('opened')) ? 'Close' : 'New Book'
+  NEW_BOOK_BTN.innerText = content
+})
 
 FORM_BTN.addEventListener('click', () => {
   let formData = new FormData(FORM_ELEM)
